@@ -16,6 +16,7 @@ console.log("hello");
 // }
 
 const employeesArr = [];
+const employeesCardsArr = [];
 
 // WHEN I start the application
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
@@ -27,6 +28,10 @@ const employeesArr = [];
 // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
+
+function formatIndex() {
+  return employeesCardsArr;
+}
 
 engineerPrompt = () => {
   inquirer
@@ -56,8 +61,10 @@ engineerPrompt = () => {
         answers.engineerEmail,
         answers.engineerGithub
       );
-      employeesArr.push(engineer);
-      console.log(employeesArr);
+      //   employeesArr.push(engineer);
+      const engineerCard = engineer.renderCard();
+      employeesCardsArr.push(engineerCard);
+      //   console.log(employeesArr);
       addAnotherEmployeePrompt();
     });
 };
@@ -90,8 +97,10 @@ internPrompt = () => {
         answers.internEmail,
         answers.internSchool
       );
-      employeesArr.push(intern);
-      console.log(employeesArr);
+      //   employeesArr.push(intern);
+      const internCard = intern.renderCard();
+      employeesCardsArr.push(internCard);
+      //   console.log(employeesArr);
       addAnotherEmployeePrompt();
     });
 };
@@ -117,6 +126,13 @@ addAnotherEmployeePrompt = () => {
         internPrompt();
       } else {
         console.log("You chose to finish building your team profile!");
+        const stringCards = employeesCardsArr.toString();
+        fs.writeFile("./dist/index.js", stringCards, function (err, result) {
+          if (err) {
+            console.log("There was an error writing the file!");
+          }
+          formatIndex();
+        });
       }
     });
 };
@@ -148,8 +164,10 @@ inquirer
       answers.managerEmail,
       answers.managerOfficeNumber
     );
-    employeesArr.push(manager);
-    console.log(employeesArr);
+    const managerCard = manager.renderCard();
+    employeesCardsArr.push(managerCard);
+    // employeesArr.push(manager);
+    // console.log(employeesArr);
 
     addAnotherEmployeePrompt();
   });
