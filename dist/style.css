@@ -1,0 +1,33 @@
+body {
+  font-family: Montserrat;
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgb(247, 142, 94), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(84, 84, 248, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  background-repeat: repeat-x;
+  height: 100vh;
+  color: white;
+}
+
+.custom-card {
+  border-radius: 3px 3px 3px 3px;
+  border: none;
+  margin: 10px;
+}
+
+.custom-card-head {
+  border-radius: 20px 20px 0px 0px;
+  background-color: rgba(84, 84, 248, 0.8);
+}
+
+.card-header {
+  border-radius: 20px 20px 0px 0px;
+}
+
+.logo {
+  width: 400px;
+  height: auto;
+}
