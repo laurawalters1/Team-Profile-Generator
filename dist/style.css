@@ -31,3 +31,8 @@ body {
   width: 400px;
   height: auto;
 }
+
+a {
+  text-decoration: none;
+  color: rgba(84, 84, 248, 0.8);
+}
