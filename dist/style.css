@@ -5,10 +5,12 @@ body {
       rgba(255, 0, 0, 0.8),
       rgba(255, 0, 0, 0) 70.71%
     ),
-    linear-gradient(127deg, rgb(247, 142, 94), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(84, 84, 248, 0.8), rgba(0, 0, 255, 0) 70.71%);
-  background-repeat: repeat-x;
-  height: 100vh;
+    linear-gradient(127deg, rgb(243, 151, 90), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(247, 103, 158, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  background-repeat: no-repeat;
+  height: 100%;
+  background-attachment: fixed;
+
   color: white;
 }
 
@@ -35,4 +37,11 @@ body {
 a {
   text-decoration: none;
   color: rgba(84, 84, 248, 0.8);
+}
+
+@media screen and (max-width: 1000px) {
+  .logo {
+    width: 300px;
+    height: auto;
+  }
 }

@@ -5,7 +5,6 @@ const Employee = require("./lib/Employee.js");
 const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
-const managerCard = require("./lib/managerCard.js");
 
 console.log("hello");
 
@@ -118,6 +117,7 @@ addAnotherEmployeePrompt = () => {
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -126,10 +126,10 @@ addAnotherEmployeePrompt = () => {
         <title>Team Profile</title>
         </head>
         <body>
-          <header class="text-center p-5">
-            <h1>Team Profile</h1>
+          <header class="text-center p-1">
+            <img src="logo.png" class="logo" alt="Team Profile">
           </header>
-          <main class="d-flex justify-content-center w-100">
+          <main class="d-flex flex-wrap justify-content-center container w-100">
         ${stringCards}
         </main>
         </body>
