@@ -1,20 +1,21 @@
+// Pulling in necessary Friday
 const fs = require("fs");
 const inquirer = require("inquirer");
-// const prompt = require("prompt");
-const Employee = require("./lib/Employee.js");
 const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 
-console.log("hello");
-
-const employeesArr = [];
+// Declaring array that employee cards will be pushed to
 const employeesCardsArr = [];
 
-function formatIndex() {
-  return employeesCardsArr;
-}
+// Function that will take an employee object and render an html card for that employee, using their own renderCard function
+createEmployeeCard = (role) => {
+  employeeCard = role.renderCard();
+  // Pushing the employee card to the employeesCardsArr
+  employeesCardsArr.push(employeeCard);
+};
 
+// Declaring the prompt sequence for the engineer role
 engineerPrompt = () => {
   inquirer
     .prompt([
@@ -34,23 +35,22 @@ engineerPrompt = () => {
         name: "engineerGithub",
         message: "Please provide this employees Github username",
       },
-    ])
+    ]) // Pass the answers in to create a new Engineer object based on the user input
     .then((answers) => {
-      console.log(answers);
       const engineer = new Engineer(
         answers.engineerName,
         answers.engineerId,
         answers.engineerEmail,
         answers.engineerGithub
       );
-      //   employeesArr.push(engineer);
-      const engineerCard = engineer.renderCard();
-      employeesCardsArr.push(engineerCard);
-      //   console.log(employeesArr);
+      // Calling the createEmployeeCard function and passing in the engineer object
+      createEmployeeCard(engineer);
+      // Calling the addAnotherEmployeePrompt which will allow the user to choose to add another employee, or to finish building their team
       addAnotherEmployeePrompt();
     });
 };
 
+// Intern prompt follows the same structure and functionality as the engineer prompt above
 internPrompt = () => {
   inquirer
     .prompt([
@@ -79,13 +79,13 @@ internPrompt = () => {
         answers.internEmail,
         answers.internSchool
       );
-      //   employeesArr.push(intern);
-      const internCard = intern.renderCard();
-      employeesCardsArr.push(internCard);
-      //   console.log(employeesArr);
+
+      createEmployeeCard(intern);
       addAnotherEmployeePrompt();
     });
 };
+
+// Declaring the addAnotherEmployeePrompt, which allows the user to choose to add another employee, or to finish building their team
 addAnotherEmployeePrompt = () => {
   inquirer
     .prompt([
@@ -102,15 +102,17 @@ addAnotherEmployeePrompt = () => {
       },
     ])
     .then((answers) => {
+      // Checking the answer to the add another employee prompt, then responding with the necessary prompt function
       if (answers.addAnotherEmployee == "Add an Engineer") {
         engineerPrompt();
       } else if (answers.addAnotherEmployee == "Add an Intern") {
         internPrompt();
       } else {
         console.log("You chose to finish building your team profile!");
-        const concatCards = employeesCardsArr.join("");
-        const stringCards = concatCards.toString();
+        // If the user chose to finish building their team, the employee cards are joined with no separating character, so that they can then be placed into the html
+        const stringCards = employeesCardsArr.join("");
 
+        // Creating the index file using template literals
         const html = `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -134,17 +136,19 @@ addAnotherEmployeePrompt = () => {
         </main>
         </body>
         </html> `;
-
+        // Writing the file with the html variable
         fs.writeFile("./dist/index.html", html, function (err, result) {
           if (err) {
             console.log("There was an error writing the file!");
           }
-          formatIndex();
+          // If no errors are returned, a message displays letting the user know the file has been generated
+          console.log("Your profile has been generated!");
         });
       }
     });
 };
 
+// The initial prompt that runs when the user starts the script, asks for manager details
 inquirer
   .prompt([
     {
@@ -165,17 +169,15 @@ inquirer
     },
   ])
   .then((answers) => {
-    console.log(answers);
+    // Creating a new Manager object based on the user input
     const manager = new Manager(
       answers.managerName,
       answers.managerId,
       answers.managerEmail,
       answers.managerOfficeNumber
     );
-    const managerCard = manager.renderCard();
-    employeesCardsArr.push(managerCard);
-    // employeesArr.push(manager);
-    // console.log(employeesArr);
 
+    createEmployeeCard(manager);
+    // Calling the add another employee prompt to allow the user to continue building their team, or choose to finish
     addAnotherEmployeePrompt();
   });
