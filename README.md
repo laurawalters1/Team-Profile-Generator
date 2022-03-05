@@ -9,4 +9,9 @@ The application should be started by opening up the index.js file in the integra
 ## Example Profile
 
 Below is a screenshot of of a team profile that was generated using this application. The files for this example have been included in the example folder. The href for the css has been amended post generation to account for the change in file name to "example.css".
+
 ![Screenshot](/screencapture-file-Users-laurawalters-Documents-bootcamp-team-profile-generator-Team-Profile-Generator-dist-index-html-2022-03-04-22_07_12.png)
+
+Link to walkthrough video: https://drive.google.com/file/d/1H97LnfqoGhGcQOqSA4OTQVfxln6_CZOA/view?usp=sharing
+
+Link to github repository: https://github.com/laurawalters1/Team-Profile-Generator
